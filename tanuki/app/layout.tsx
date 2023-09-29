@@ -2,7 +2,10 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Schibsted_Grotesk } from 'next/font/google'
 
-const schibsted = Schibsted_Grotesk({ subsets: ['latin'] })
+const schibsted_Grotesk = Schibsted_Grotesk({ 
+  subsets: ['latin'],  
+  display: 'swap'
+})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={schibsted.className}>{children}</body>
+      <body className={schibsted_Grotesk.className}>{children}</body>
     </html>
   )
 }
