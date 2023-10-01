@@ -15,5 +15,4 @@ model Story {
   id        Int      @id @default(autoincrement())
   title     String
   content   String
-  author    String
 }

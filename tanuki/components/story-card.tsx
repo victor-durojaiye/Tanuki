@@ -1,11 +1,5 @@
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-  } from "@/components/ui/card"
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Separator } from "@/components/ui/separator"
 
   interface StoryCardProps {
     title: string;
@@ -15,13 +9,10 @@ import {
   
   export function StoryCard({title, content}: StoryCardProps){
     return(
-        <Card>
-            <CardHeader>
-                <CardTitle>{title}</CardTitle>
-            </CardHeader>
-        <CardContent>
-            <p>{content}</p>
-        </CardContent>
-        </Card>
+        <ScrollArea className="h-[225px] w-[400px] rounded-md border p-4">
+            <h3 className="font-bold text-2xl">{title}</h3>
+            <Separator className="my-2" />
+            <p className="text-sm">{content}</p>
+        </ScrollArea>
     )
   }
