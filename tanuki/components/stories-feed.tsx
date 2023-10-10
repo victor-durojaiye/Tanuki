@@ -6,16 +6,18 @@ import { Button } from './ui/button';
 import { ChevronRight, ChevronLeft } from "lucide-react"
 
 type Story = {
-    id: number;
-    title: string;
-    content: string;
-  };
+  id: number;
+  title: string;
+  enTitle: string;
+  content: string;
+  enContent: string;
+};
   
-  type Page = {
-    initialStories: Story[];
-  };
+type Page = {
+  initialStories: Story[];
+};
 
-export default function StoriesFeed({ initialStories }: Page) {
+export default function StoriesFeed({ initialStories }: Page ) {
   const [currentPage, setCurrentPage] = useState(1);
   const storiesPerPage = 1;
 
@@ -24,18 +26,17 @@ export default function StoriesFeed({ initialStories }: Page) {
   };
 
   const maxIndexOfLastStory = initialStories.length; // Maximum index of the last story
-
   const indexOfLastStory = Math.min(currentPage * storiesPerPage, maxIndexOfLastStory);
-
   const indexOfFirstStory = indexOfLastStory - storiesPerPage;
   const currentStories = initialStories.slice(indexOfFirstStory, indexOfLastStory);
-
+  const showRightButton = indexOfLastStory < maxIndexOfLastStory;
+  
   return (
     <>
         <div className='flex flex-col max-w-2xl my-auto'>
           {currentStories.map((story) => (
             <div key={story.id}>
-              <StoryCard title={story.title} content={story.content} />
+              <StoryCard title={story.title} enTitle = {story.enTitle} content={story.content} enContent={story.enContent} />
             </div>
             ))}
         </div>
@@ -46,7 +47,7 @@ export default function StoriesFeed({ initialStories }: Page) {
                 <ChevronLeft className="h-4 w-4" />
             </Button>
         )}
-        {currentStories.length === storiesPerPage && (
+        {showRightButton && (
             <Button variant="outline" size="icon" onClick={() => handlePageChange(currentPage + 1)}>
                 <ChevronRight className="h-4 w-4" />
             </Button>

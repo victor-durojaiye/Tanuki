@@ -14,5 +14,7 @@ datasource db {
 model Story {
   id        Int      @id @default(autoincrement())
   title     String
+  enTitle   String
   content   String
+  enContent String
 }
